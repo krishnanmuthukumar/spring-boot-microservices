@@ -1,2 +1,2 @@
 # spring-boot-microservices
-A simple spring boot microservice using Zuul and eureka and Hystrix
+A simple spring boot microservice using Zuul and Eureka and Hystrix
