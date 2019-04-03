@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import com.app.gallery.entities.Gallery;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 
 @RestController
 @RequestMapping("/")
@@ -29,6 +30,7 @@ public class GalleryController {
 		return "Hello from Gallery Service running at port: " + env.getProperty("local.server.port");
 	}
 
+	@HystrixCommand(fallbackMethod = "fallback")
 	@RequestMapping("/{id}")
 	public Gallery getGallery(@PathVariable final int id) {
 		// create gallery object
@@ -48,5 +50,10 @@ public class GalleryController {
 	@RequestMapping("/admin")
 	public String homeAdmin() {
 		return "This is the admin area of Gallery service running at port: " + env.getProperty("local.server.port");
+	}
+
+	// a fallback method to be called if failure happened
+	public Gallery fallback(int galleryId, Throwable hystrixCommand) {
+		return new Gallery(galleryId);
 	}
 }

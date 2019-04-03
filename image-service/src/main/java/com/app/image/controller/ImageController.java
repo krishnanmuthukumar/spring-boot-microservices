@@ -24,8 +24,8 @@ public class ImageController {
 				new Image(2, "The Town", "https://www.imdb.com/title/tt0096697/mediaviewer/rm3698134272"), new Image(3,
 						"The Last Traction Hero", "https://www.imdb.com/title/tt0096697/mediaviewer/rm1445594112"));
 
-		 //throw new Exception("Images can't be fetched");
-		return images;
+		 throw new Exception("Images can't be fetched");
+		//return images;
 	}
 
 }
